@@ -14,6 +14,7 @@ class CategorieController extends Controller
         }
 
         return view('categorie', [
+            'categories' => Categorie::published()->get(),
             'categorie' => $categorie,
             'articles' => $categorie->articles
         ]);

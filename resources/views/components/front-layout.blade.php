@@ -39,7 +39,7 @@
     <x-preloader/>
 
     <div class="body_wrapper">
-        <x-navigation />
+        <x-navigation :categories="$categories"/>
         <x-banner />
 
         {{ $slot }}

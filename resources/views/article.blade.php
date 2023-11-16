@@ -1,4 +1,4 @@
-<x-front-layout>
+<x-front-layout :categories="$categories">
     <x-article-breadcrumb :article="$article"/>
 
     <!--================Topic Area =================-->

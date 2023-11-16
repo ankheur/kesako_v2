@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -16,7 +17,8 @@ class ArticleController extends Controller
         $article->visit();
 
         return view('article', [
-            'article' => $article
+            'article' => $article,
+            'categories' => Categorie::published()->get()
         ]);
     }
 }

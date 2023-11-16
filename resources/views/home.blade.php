@@ -1,4 +1,4 @@
-<x-front-layout>
+<x-front-layout :categories="$categories">
     <section class="doc_features_area">
         {{--<img class="doc_features_shap" src="{{ asset('build/img/new/shap_white.png') }}" alt="">--}}
         <div class="container">

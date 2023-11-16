@@ -1,4 +1,4 @@
-<x-front-layout>
+<x-front-layout :categories="$categories">
     <x-categorie-breadcrumb :categorie="$categorie"/>
 
     <section class="doc_documentation_area" id="sticky_doc">
