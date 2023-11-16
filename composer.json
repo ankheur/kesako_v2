@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "althinect/filament-spatie-roles-permissions": "^2.2",
+        "chiiya/filament-access-control": "^2.3",
         "filament/filament": "^3.0-stable",
         "guzzlehttp/guzzle": "^7.2",
         "jeffgreco13/filament-breezy": "^2.1",
