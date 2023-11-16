@@ -3,6 +3,7 @@
 use App\Models\Article;
 use App\Models\Auteur;
 use App\Models\Categorie;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 test('Ne retourne que les articles publiés en utilisant le scope published', function () {
     Article::factory()->published()->create();
@@ -20,4 +21,13 @@ test('L’article a une catégorie', function () {
 
     expect($article->categorie)
         ->toBeInstanceOf(Categorie::class);
+});
+
+test('L’article compte les visites', function () {
+    $article = Article::factory()
+        ->for(Categorie::factory())
+        ->create();
+
+    expect($article->visits())
+        ->toBeInstanceOf(MorphMany::class);
 });

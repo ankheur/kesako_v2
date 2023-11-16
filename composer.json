@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.1",
         "chiiya/filament-access-control": "^2.3",
+        "coderflexx/laravisit": "^1.4",
         "filament/filament": "^3.0-stable",
         "guzzlehttp/guzzle": "^7.2",
         "jeffgreco13/filament-breezy": "^2.1",

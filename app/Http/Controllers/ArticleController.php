@@ -13,6 +13,8 @@ class ArticleController extends Controller
             abort(404);
         }
 
+        $article->visit();
+
         return view('article', [
             'article' => $article
         ]);

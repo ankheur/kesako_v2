@@ -102,6 +102,10 @@ class ArticleResource extends Resource
                 ->label('Date de publication')
                 ->date()
                 ->sortable(),
+
+            TextColumn::make('visits_count')
+                ->label('Visites')
+                ->counts('visits')
         ]);
     }
 
