@@ -20,6 +20,9 @@
 
     <section class="doc_blog_grid_area">
         <div class="container">
+            <div class="text-center">
+                <h2 class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Derniers articles</h2>
+            </div>
             <div class="row blog_grid_tab">
                 @foreach($articles as $article)
                     <div class="col-lg-4 col-sm-6">

@@ -13,7 +13,7 @@ class CategorieController extends Controller
             abort(404);
         }
 
-        return view('article', [
+        return view('categorie', [
             'categorie' => $categorie,
             'articles' => $categorie->articles
         ]);
