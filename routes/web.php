@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PageHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', PageHomeController::class)->name('pages.home');
+
+Route::get('categorie/{categorie:slug}', [CategorieController::class, 'show'])->name('categorie.show');
+
+Route::get('article/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
