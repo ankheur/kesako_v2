@@ -9,10 +9,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 
 class Article extends Model implements CanVisit
 {
-    use HasFactory, SoftDeletes, HasVisits;
+    use Searchable, HasFactory, SoftDeletes, HasVisits;
+
+    protected $with = [
+        'categorie'
+    ];
 
     protected $fillable = [
         'categorie_id',
@@ -28,6 +35,22 @@ class Article extends Model implements CanVisit
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function searchable()
+    {
+        return $this->published_at;
+    }
+
+    #[SearchUsingPrefix(['titre', 'slug'])]
+    #[SearchUsingFullText(['contenu'])]
+    public function toSearchableArray(): array
+    {
+        return [
+            'titre' => $this->titre,
+            'slug' => $this->slug,
+            'contenu' => $this->contenu
+        ];
+    }
 
     public function scopePublished(Builder $query): void
     {

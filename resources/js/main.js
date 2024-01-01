@@ -510,13 +510,13 @@
   }*/
 
   /*=========== anchors js ===========*/
-  if ($(".shortcode_info h4").length) {
+/*  if ($(".shortcode_info h4").length) {
     var Anchor1 = new AnchorJS();
     document.addEventListener("DOMContentLoaded", function (event) {
       Anchor1 = new AnchorJS();
       Anchor1.add(".shortcode_info h4");
     });
-  }
+  }*/
 
   /*--------- WOW js-----------*/
   function bodyScrollAnimation() {
@@ -1016,7 +1016,7 @@
     });
   }
 
-  $(".header_search_keyword ul li a").on("click", function (e) {
+  /*$(".header_search_keyword ul li a").on("click", function (e) {
     e.preventDefault();
     var content = $(this).text();
     $("#searchbox").val(content).focus();
@@ -1028,7 +1028,7 @@
   });
   $(".input-wrapper input").focusout(function () {
     $(this).parent().find(".header_search_form_panel").first().slideUp(300);
-  });
+  });*/
 
   /*-------------------------------------------------------------------------------
 	  MAILCHIMP js

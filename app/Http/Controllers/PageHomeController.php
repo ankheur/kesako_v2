@@ -14,6 +14,7 @@ class PageHomeController extends Controller
 
         return view('home', [
             'categories' => $categories,
+            'popularPosts' => Article::popularThisMonth()->limit(3)->get(),
             'articles' => $articles,
         ]);
     }

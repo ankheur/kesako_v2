@@ -18,7 +18,8 @@ class ArticleController extends Controller
 
         return view('article', [
             'article' => $article,
-            'categories' => Categorie::published()->get()
+            'categories' => Categorie::published()->get(),
+            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
         ]);
     }
 }

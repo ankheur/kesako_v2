@@ -1,24 +1,24 @@
-<x-front-layout :categories="$categories">
+<x-front-layout :categories="$categories" :popular-posts="$popularPosts">
     <x-article-breadcrumb :article="$article"/>
 
     <!--================Topic Area =================-->
     <section class="doc_documentation_area" id="sticky_doc">
         <div class="overlay_bg"></div>
-        <div class="container custom_container">
+        <div class="container">
             <div class="row">
-                <div class="d-flex col-lg-12 col-md-8 doc-middle-content">
+                <div class="d-md-flex doc-middle-content">
                     <article id="post" class="shortcode_info documentation_info tour_content">
                         <div class="documentation_body" id="documentation">
                             <div class="row">
-                                <div class="col-md-9 d-flex flex-column justify-content-center shortcode_title text-center">
+                                <div class="col-lg-9 col-12 d-flex flex-column justify-content-center shortcode_title text-center">
                                     <h1>{{ $article->titre }}</h1>
                                     <p><strong>{{ $article->soustitre }}</strong></p>
 
-                                    <blockquote class="media notice notice-warning text-left">
+                                    <blockquote class="media notice text-left mr-2">
                                         {!! $article->description !!}
                                     </blockquote>
                                 </div>
-                                <div class="col-md-3 d-flex justify-content-end">
+                                <div class="col-lg-3 col-12 d-flex justify-content-lg-end justify-content-center mb-5 mb-lg-0">
                                     <img src="{{ Storage::url($article->illustration) }}" height="300">
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 {!! $article->contenu !!}
                             </div>
                         </div>
-                        <footer>
+                        {{--<footer>
                             <div class="border_bottom"></div>
                             <div class="row feedback_link">
                                 <div class="col-lg-6">
@@ -55,7 +55,7 @@
                                     <p>Cette page vous a t'elle été utile ? <a href="#" class="h_btn">Oui</a><a href="#" class="h_btn red">Non</a></p>
                                 </div>
                             </div>
-                        </footer>
+                        </footer>--}}
                     </article>
                 </div>
             </div>

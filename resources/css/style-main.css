@@ -9820,6 +9820,7 @@ button.swiper-pagination-bullet {
 .doc-middle-content {
   padding-left: 15px;
   padding-right: 15px;
+  max-width: 100%;
 }
 
 .full-width-doc .doc-middle-content {
@@ -17223,5 +17224,9 @@ body.body_dark img.logo-light {
 }
 
 /*---------------------------------------------------- */
+
+.article-illustration {
+    width: 50%;
+}
 
 /*# sourceMappingURL=style-main.css.map */

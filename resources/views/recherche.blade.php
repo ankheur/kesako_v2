@@ -1,4 +1,4 @@
-<x-front-layout :categories="$categories" :popular-posts="$popularPosts">
+<x-front-layout :categories="$categories">
     <section class="doc_features_area">
         {{--<img class="doc_features_shap" src="{{ asset('build/img/new/shap_white.png') }}" alt="">--}}
         <div class="container">
@@ -17,11 +17,10 @@
             </div>
         </div>
     </section>
-
     <section class="doc_blog_grid_area">
         <div class="container">
             <div class="text-center">
-                <h2 class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Derniers articles</h2>
+                <h2 class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Les résultats pour : {{ $query }}</h2>
             </div>
             <div class="row blog_grid_tab">
                 @foreach($articles as $article)
@@ -49,34 +48,4 @@
             </div>
         </div>
     </section>
-    {{--<section class="doc_subscribe_area mt-5 mb-5">
-        <div class="container">
-            <div class="doc_subscribe_inner">
-                <img class="one" src="{{ asset('build/img/new/subscribe_shap.png') }}" alt="">
-                <img class="two" src="{{ asset('build/img/new/subscribe_shap_two.png') }}" alt="">
-                <div class="text wow fadeInLeft" data-wow-delay="0.2s">
-                    <h2>Rejoignez-nous ! <br>Et participez à transmettre le savoir</h2>
-                </div>
-                <form action="#" class="doc_subscribe_form wow fadeInRight mailchimp" data-wow-delay="0.4s"
-                      method="post">
-                    <div class="form-group">
-                        <div class="input-fill">
-                            <input type="email" name="EMAIL" id="email" class="memail"
-                                   placeholder="Votre adresse mail">
-                        </div>
-                        <button type="submit" class="submit_btn">S'inscrire</button>
-                        <p class="mchimp-errmessage" style="display: none;"></p>
-                        <p class="mchimp-sucmessage" style="display: none;"></p>
-                    </div>
-                    --}}{{--<ul class="list-unstyled">
-                        <li><a href="#">Messenger</a></li>
-                        <li><a href="#">Product Tours</a></li>
-                        <li><a href="#">Inbox and more</a></li>
-                    </ul>--}}{{--
-
-                </form>
-            </div>
-        </div>
-    </section>--}}
 </x-front-layout>
-

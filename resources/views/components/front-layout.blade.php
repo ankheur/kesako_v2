@@ -40,7 +40,7 @@
 
     <div class="body_wrapper">
         <x-navigation :categories="$categories"/>
-        <x-banner />
+        <x-banner :popular_posts="$popularPosts"/>
 
         {{ $slot }}
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PageHomeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,5 @@ Route::get('/', PageHomeController::class)->name('pages.home');
 Route::get('categorie/{categorie:slug}', [CategorieController::class, 'show'])->name('categorie.show');
 
 Route::get('article/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
+
+Route::post('recherche', SearchController::class)->name('recherche');

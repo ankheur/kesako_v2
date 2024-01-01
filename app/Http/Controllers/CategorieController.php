@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class CategorieController extends Controller
         return view('categorie', [
             'categories' => Categorie::published()->get(),
             'categorie' => $categorie,
-            'articles' => $categorie->articles
+            'articles' => $categorie->articles,
+            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
         ]);
     }
 }
