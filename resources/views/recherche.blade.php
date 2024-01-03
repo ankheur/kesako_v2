@@ -1,4 +1,4 @@
-<x-front-layout :categories="$categories">
+<x-front-layout :categories="$categories" :popular-posts="$popularPosts">
     <section class="doc_features_area">
         {{--<img class="doc_features_shap" src="{{ asset('build/img/new/shap_white.png') }}" alt="">--}}
         <div class="container">

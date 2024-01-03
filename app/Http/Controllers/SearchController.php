@@ -16,7 +16,8 @@ class SearchController extends Controller
         return view('recherche', [
             'articles' => $articles_found,
             'categories' => $categories,
-            'query' => $request->search
+            'query' => $request->search,
+            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
         ]);
     }
 }
