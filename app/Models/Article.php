@@ -12,10 +12,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
 class Article extends Model implements CanVisit
 {
-    use Searchable, HasFactory, SoftDeletes, HasVisits;
+    use Searchable, HasFactory, SoftDeletes, HasVisits, HasSEO;
 
     protected $with = [
         'categorie'

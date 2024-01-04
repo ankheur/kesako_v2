@@ -20,6 +20,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use RalphJSmit\Filament\SEO\SEO;
 
 class ArticleResource extends Resource
 {
@@ -84,6 +85,11 @@ class ArticleResource extends Resource
                             ->label('Date de publication')
                             ->maxDate(now()),
                     ]),
+
+                Section::make()
+                    ->schema([
+                        SEO::make(),
+                    ])
         ]);
     }
 

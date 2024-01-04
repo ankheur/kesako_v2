@@ -19,7 +19,9 @@
         "laravel/sanctum": "^3.3.2",
         "laravel/scout": "^10.6.1",
         "laravel/tinker": "^2.8.2",
-        "opcodesio/log-viewer": "^3.1.10"
+        "opcodesio/log-viewer": "^3.1.10",
+        "ralphjsmit/laravel-filament-seo": "^1.2",
+        "spatie/laravel-sitemap": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
