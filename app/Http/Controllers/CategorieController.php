@@ -18,7 +18,7 @@ class CategorieController extends Controller
             'categories' => Categorie::published()->get(),
             'categorie' => $categorie,
             'articles' => $categorie->articles,
-            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
+            'popularPosts' => Article::popularToday()->limit(3)->get()
         ]);
     }
 }

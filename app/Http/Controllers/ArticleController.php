@@ -14,12 +14,12 @@ class ArticleController extends Controller
             abort(404);
         }
 
-        $article->visit();
+        $article->visit()->hourlyInterval();
 
         return view('article', [
             'article' => $article,
             'categories' => Categorie::published()->get(),
-            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
+            'popularPosts' => Article::popularToday()->limit(3)->get()
         ]);
     }
 }

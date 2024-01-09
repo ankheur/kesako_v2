@@ -17,7 +17,7 @@ class SearchController extends Controller
             'articles' => $articles_found,
             'categories' => $categories,
             'query' => $request->search,
-            'popularPosts' => Article::popularThisMonth()->limit(3)->get()
+            'popularPosts' => Article::popularToday()->limit(3)->get()
         ]);
     }
 }
