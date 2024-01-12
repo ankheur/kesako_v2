@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "algolia/scout-extended": "^3.0",
         "chiiya/filament-access-control": "^2.3",
         "coderflexx/laravisit": "^1.4.2",
