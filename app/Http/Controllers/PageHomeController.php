@@ -1,21 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Categorie;
+use App\Models\Domaine;
+use App\Models\Fiche;
+use Illuminate\View\View;
 
-class PageHomeController extends Controller
+final class PageHomeController
 {
-    public function __invoke()
+    public function __invoke(): View
     {
-        $categories = Categorie::published()->get();
-        $articles = Article::published()->orderByDesc('published_at')->with(['categorie:id,slug,titre'])->get();
+        $domaines = Domaine::published()->get();
+        $fiches = Fiche::published()->orderByDesc('published_at')->limit(12)->get();
 
         return view('home', [
-            'categories' => $categories,
-            'popularPosts' => Article::popularToday()->limit(3)->get(),
-            'articles' => $articles,
+            'domaines' => $domaines,
+            /* 'popularPosts' => Fiche::popularToday()->limit(3)->get(), */
+            'fiches' => $fiches,
         ]);
     }
 }

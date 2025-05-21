@@ -1,23 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Categorie;
+use App\Models\Domaine;
+use App\Models\Fiche;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class SearchController extends Controller
+final class SearchController
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): View
     {
-        $categories = Categorie::published()->get();
+        $domaines = Domaine::published()->get();
 
-        $articles_found = Article::search($request->search)->get();
+        $fiches_found = Fiche::search($request->search)->get();
+
         return view('recherche', [
-            'articles' => $articles_found,
-            'categories' => $categories,
+            'fiches' => $fiches_found,
+            'domaines' => $domaines,
             'query' => $request->search,
-            'popularPosts' => Article::popularToday()->limit(3)->get()
+            /* 'popularPosts' => Fiche::popularToday()->limit(3)->get() */
         ]);
     }
 }

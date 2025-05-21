@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Article;
-use App\Models\Auteur;
-use App\Models\Categorie;
+declare(strict_types=1);
+
+use App\Models\Fiche;
+
 use function Pest\Laravel\{get};
 
 test('Homepage fonctionnelle', function () {
@@ -10,12 +11,11 @@ test('Homepage fonctionnelle', function () {
         ->assertOk();
 });
 
-test('Page article fonctionnelle', function () {
-    $article = Article::factory()
-        ->for(Categorie::factory())
+test('Page show fiche fonctionnelle', function () {
+    $fiche = Fiche::factory()
         ->published()
         ->create();
 
-    get(route('article.show', $article))
+    get(route('fiche.show', $fiche))
         ->assertOk();
 });

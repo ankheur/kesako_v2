@@ -1,0 +1,18 @@
+created:
+    - database/factories/TagFactory.php
+    - database/factories/CategorieFactory.php
+    - database/migrations/2025_05_19_123621_create_tags_table.php
+    - database/migrations/2025_05_19_123622_create_categories_table.php
+    - database/migrations/2025_05_19_123623_create_domaine_tag_table.php
+    - database/migrations/2025_05_19_123624_create_fiche_tag_table.php
+    - database/migrations/2025_05_19_123625_create_categorie_domaine_table.php
+    - database/migrations/2025_05_19_123626_create_categorie_fiche_table.php
+    - app/Models/Tag.php
+    - app/Models/Categorie.php
+models:
+    Auteur: { nom: string, prenom: string, email: string, password: string, image_profil: 'string nullable' }
+    Domaine: { titre: string, slug: string, icone: string, description: 'text nullable', published_at: 'timestamp nullable' }
+    Fiche: { domaine_id: 'biginteger unsigned', titre: string, soustitre: string, illustration: 'string nullable', slug: string, description: text, contenu: text, published_at: 'timestamp nullable' }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Tag: { denomination: 'string:255', slug: 'string:255', published_at: 'timestamp nullable', relationships: { belongsToMany: 'Domaine, Fiche' } }
+    Categorie: { denomination: 'string:255', slug: 'string:255', published_at: 'timestamp nullable', relationships: { belongsToMany: 'Domaine, Fiche' } }

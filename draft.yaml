@@ -1,0 +1,17 @@
+models:
+  Tag:
+    denomination: string:255
+    slug: string:255
+    published_at: timestamp nullable
+    relationships:
+      belongsToMany:
+        Domaine, Fiche
+  Categorie:
+    denomination: string:255
+    slug: string:255
+    published_at: timestamp nullable
+    relationships:
+      belongsToMany:
+        Domaine, Fiche
+controllers:
+  # ...

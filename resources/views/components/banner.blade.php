@@ -52,14 +52,14 @@
                     </div>
 
                 </div>
-                <div class="header_search_keyword">
+                {{--<div class="header_search_keyword">
                     <span class="header-search-form__keywords-label">Sujets populaires :</span>
                     <ul class="list-unstyled">
-                        @foreach($popularPosts as $popularPost)
-                            <li class="wow fadeInUp" data-wow-delay="0.2s"><a href="{{ route('article.show', $popularPost->slug) }}">{{ $popularPost->titre }}</a></li>
-                        @endforeach
+                        --}}{{--@foreach($popularPosts as $popularPost)
+                            <li class="wow fadeInUp" data-wow-delay="0.2s"><a href="{{ route('fiche.show', $popularPost->slug) }}">{{ $popularPost->titre }}</a></li>
+                        @endforeach--}}{{--
                     </ul>
-                </div>
+                </div>--}}
             </form>
         </div>
     </div>

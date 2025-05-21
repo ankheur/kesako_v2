@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\Categorie;
-use Illuminate\Http\Request;
+use App\Models\Domaine;
+use Illuminate\View\View;
 
-class CategorieController extends Controller
+final class CategorieController
 {
-    public function show(Categorie $categorie)
+    public function show(Categorie $categorie): View
     {
-        if(!$categorie->published_at) {
+        if (! $categorie->published_at) {
             abort(404);
         }
 
+        /* $categorie->visit()->hourlyInterval(); */
+
         return view('categorie', [
-            'categories' => Categorie::published()->get(),
             'categorie' => $categorie,
-            'articles' => $categorie->articles,
-            'popularPosts' => Article::popularToday()->limit(3)->get()
+            'domaines' => Domaine::published()->get(),
         ]);
     }
 }

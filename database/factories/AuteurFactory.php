@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Auteur;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class AuteurFactory extends Factory
+final class AuteurFactory extends Factory
 {
     protected $model = Auteur::class;
 

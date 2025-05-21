@@ -1,48 +1,46 @@
 <?php
 
-use App\Models\Article;
-use App\Models\Auteur;
-use App\Models\Categorie;
+declare(strict_types=1);
+
+use App\Models\Domaine;
+use App\Models\Fiche;
 
 use function Pest\Laravel\{get};
 
-test('Affichage de la page d’accueil avec articles et catégories principales', function () {
-    $categorie = Categorie::factory()->published()->create();
-    $article = Article::factory()
-        ->for($categorie)
+test('Affichage de la page d’accueil avec fiches et catégories principales', function () {
+    $domaine = Domaine::factory()->published()->create();
+    $fiche = Fiche::factory()
         ->published()
         ->create();
 
     get(route('pages.home'))
         ->assertOk()
-        /*->assertViewIs('home')*/
-        ->assertSeeText($categorie->titre)
-        ->assertSeeText($article->titre);
+        /* ->assertViewIs('home') */
+        ->assertSeeText($domaine->titre)
+        ->assertSeeText($fiche->titre);
 });
 
 test('Affichage seulement des catégories de niveau 1 publiées', function () {
-    $categorieOne = Categorie::factory()->published()->create();
-    $categorieTwo = Categorie::factory()->create();
+    $domaineOne = Domaine::factory()->published()->create();
+    $domaineTwo = Domaine::factory()->create();
 
     get(route('pages.home'))
         ->assertOk()
-        ->assertSeeText($categorieOne->titre)
-        ->assertDontSeeText($categorieTwo->titre);
+        ->assertSeeText($domaineOne->titre)
+        ->assertDontSeeText($domaineTwo->titre);
 });
 
-test('Affichage des derniers articles publiés par ordre chronologique', function () {
-    $articleOne = Article::factory()
-        ->for(Categorie::factory())
-        ->published(\Carbon\Carbon::yesterday())
+test('Affichage des derniers fiches publiés par ordre chronologique', function () {
+    $ficheOne = Fiche::factory()
+        ->published(Carbon\Carbon::yesterday())
         ->create();
-    $articleTwo = Article::factory()
-        ->for(Categorie::factory())
+    $ficheTwo = Fiche::factory()
         ->published()
         ->create();
-    $articleThree = Article::factory()->create();
+    $ficheThree = Fiche::factory()->create();
 
     get(route('pages.home'))
         ->assertOk()
-        ->assertSeeTextInOrder([$articleTwo->titre, $articleOne->titre])
-        ->assertDontSeeText($articleThree->titre);
+        ->assertSeeTextInOrder([$ficheTwo->titre, $ficheOne->titre])
+        ->assertDontSeeText($ficheThree->titre);
 });

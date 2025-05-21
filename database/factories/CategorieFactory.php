@@ -1,32 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
+use App\Enums\TypeCategorie;
 use App\Models\Categorie;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Carbon\Carbon;
 
-class CategorieFactory extends Factory
+final class CategorieFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
     protected $model = Categorie::class;
 
+    /**
+     * Define the model's default state.
+     */
     public function definition(): array
     {
         return [
-            'titre' => $this->faker->sentence(),
-            'slug' => $this->faker->slug(),
-            'icone' => 'categorie-icones/' . $this->faker->word() . '.png',
-            'description' => $this->faker->paragraph(),
-            'published_at' => null,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'denomination' => fake()->word(),
+            'description' => fake()->paragraph(),
+            'type' => fake()->randomElement(TypeCategorie::toArray()),
+            'slug' => fake()->slug(),
+            'published_at' => fake()->dateTime(),
         ];
-    }
-
-    public function published(Carbon $date = null): self
-    {
-        return $this->state(
-            fn (array $attributes) => ['published_at' => $date ?? Carbon::now()]
-        );
     }
 }

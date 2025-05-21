@@ -26,13 +26,13 @@
                     <a href="{{ route('pages.home') }}" class="nav-link">Accueil</a>
                 </li>
                 <li class="nav-item dropdown submenu">
-                    <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+                    <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Domaines</a>
                     <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true" data-toggle="dropdown"></i>
                     <ul class="dropdown-menu sub">
-                        @foreach($categories as $categorie)
+                        @foreach($domaines as $domaine)
                             <li class="nav-item {{ $loop->first ? 'active' : '' }}">
-                                <img src="{{ Storage::url($categorie->icone) }}" alt="" width="30" class="pr-2">
-                                <a class="nav-link" href="{{ route('categorie.show', $categorie) }}">{{ $categorie->titre }}</a>
+                                <img src="{{ Storage::url($domaine->icone) }}" alt="" width="30" class="pr-2">
+                                <a class="nav-link" href="{{ route('domaine.show', $domaine) }}">{{ $domaine->titre }}</a>
                             </li>
                         @endforeach
                     </ul>

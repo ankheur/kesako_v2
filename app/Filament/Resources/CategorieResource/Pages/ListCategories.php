@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\CategorieResource\Pages;
 
 use App\Filament\Resources\CategorieResource;
-use Filament\Actions\CreateAction;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListCategories extends ListRecords
+final class ListCategories extends ListRecords
 {
     protected static string $resource = CategorieResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            Actions\CreateAction::make(),
         ];
     }
 }

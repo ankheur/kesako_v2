@@ -12,8 +12,8 @@
 
     <link rel="shortcut icon" href="{{ asset('build/img/favicon.ico') }}" type="image/x-icon">
 
-    @filamentStyles
-    {{--@vite('resources/css/app.css')--}}
+    {{--@filamentStyles--}}
+    @vite('resources/js/app.js')
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('build/assets/bootstrap/css/bootstrap.min.css') }}">
@@ -39,8 +39,8 @@
     <x-preloader/>
 
     <div class="body_wrapper">
-        <x-navigation :categories="$categories"/>
-        <x-banner :popular_posts="$popularPosts"/>
+        <x-navigation :domaines="$domaines"/>
+        <x-banner />
 
         {{ $slot }}
 

@@ -1,24 +1,20 @@
 <?php
 
-use App\Models\Article;
-use App\Models\Auteur;
+declare(strict_types=1);
+
 use App\Models\Categorie;
 
-test('Ne retourne que les categories publiées en utilisant le scope published', function () {
-    Categorie::factory()->published()->create();
-    Categorie::factory()->create();
+test('to array', function () {
+    $categorie = Categorie::factory()->create()->fresh();
 
-    expect(Categorie::published()->get())
-        ->toHaveCount(1)
-        ->first()->id->toEqual(1);
-});
-
-test('La catégorie a des articles', function () {
-    $categorie = Categorie::factory()
-        ->has(Article::factory()->count(3))
-        ->create();
-
-    expect($categorie->articles)
-        ->toHaveCount(3)
-        ->each()->toBeInstanceOf(Article::class);
+    expect(array_keys($categorie->toArray()))->toEqual([
+        'id',
+        'denomination',
+        'slug',
+        'type',
+        'published_at',
+        'created_at',
+        'updated_at',
+        'description',
+    ]);
 });

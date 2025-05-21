@@ -1,9 +1,14 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+declare(strict_types=1);
+
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\DomaineController;
+use App\Http\Controllers\FicheController;
 use App\Http\Controllers\PageHomeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\TypeFicheController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +24,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', PageHomeController::class)->name('pages.home');
 
-Route::get('categorie/{categorie:slug}', [CategorieController::class, 'show'])->name('categorie.show');
+Route::get('domaine/{domaine:slug}', [DomaineController::class, 'show'])->name('domaine.show');
 
-Route::get('article/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('fiche/{fiche:slug}', [FicheController::class, 'show'])->name('fiche.show');
+
+Route::get('type-fiche/{type}', [TypeFicheController::class, 'show'])->name('fiche-type.show');
+
+Route::get('tag/{tag:slug}', [TagController::class, 'show'])->name('tag.show');
+
+Route::get('categorie/{categorie:slug}', [CategorieController::class, 'show'])->name('categorie.show');
 
 Route::post('recherche', SearchController::class)->name('recherche');
