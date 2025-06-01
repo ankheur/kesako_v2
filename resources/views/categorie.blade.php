@@ -20,6 +20,11 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="row blog_grid_tab mb-5 pt-2">
+                                @foreach($fiches as $fiche)
+                                    <livewire:miniature-fiche :$fiche :key="$fiche->id">
+                                @endforeach
+                            </div>
                         </div>
                     </categorie>
                 </div>

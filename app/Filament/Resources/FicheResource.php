@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Enums\StatutFiche;
+use App\Enums\TitrePortfolio;
 use App\Enums\TypeFiche;
 use App\Filament\Resources\FicheResource\Pages;
 use App\Models\Categorie;
 use App\Models\Fiche;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -91,7 +94,7 @@ final class FicheResource extends Resource
                         ->options(StatutFiche::class)
                         ->live()
                         ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?StatutFiche $state): void {
-                            if ($state === StatutFiche::Publiee && $old !== StatutFiche::Publiee) {
+                            if ($state === StatutFiche::Publiee->value && $old !== StatutFiche::Publiee->value) {
                                 $set('published_at', date('Y-m-d'));
                             } else {
                                 $set('published_at', '');
@@ -101,17 +104,57 @@ final class FicheResource extends Resource
                 ]),
 
             Section::make()
-                ->columns(2)
+                ->columns(1)
                 ->schema([
-                    /*Select::make('domaine_id')
-                        ->relationship('domaine', 'titre')
-                        ->searchable()
-                        ->preload()
-                        ->required(),*/
+                    Builder::make('portfolio')
+                        ->label('Portfolio')
+                        ->blocks([
+                            Builder\Block::make('titre')
+                                ->schema([
+                                    Select::make('titre_portfolio')
+                                        ->options(TitrePortfolio::class)
+                                        ->required(),
+                                ]),
+                            Builder\Block::make('fichiers')
+                                ->schema([
+                                    Repeater::make('fichiers')
+                                        ->schema([
+                                            TextInput::make('titre'),
+                                            FileUpload::make('fichier'),
+                                            Textarea::make('alt'),
+                                            TextInput::make('description'),
+                                            TextInput::make('lien'),
+                                            Select::make('fiche')
+                                                ->label('Fiche')
+                                                ->relationship('fiches_liees', 'titre')
+                                                ->preload()
+                                                ->searchable(),
+                                        ]),
+                                ]),
 
+                        ]),
+
+                ]),
+
+            Section::make()
+                ->columns(1)
+                ->schema([
                     DatePicker::make('published_at')
                         ->label('Date de publication')
                         ->maxDate(now()),
+                    Select::make('fiches_liees')
+                        ->label('Fiches liées')
+                        ->relationship('fiches_liees', 'titre', ignoreRecord: true)
+                        ->multiple()
+                        ->preload()
+                        ->searchable(),
+
+                    Select::make('fiches_connexes')
+                        ->label('Fiches connexes')
+                        ->relationship('fiches_connexes', 'titre', ignoreRecord: true)
+                        ->multiple()
+                        ->preload()
+                        ->searchable(),
                 ]),
 
             Section::make()

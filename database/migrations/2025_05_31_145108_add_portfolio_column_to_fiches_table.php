@@ -10,10 +10,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('fiches_connexes', function (Blueprint $table): void {
-            $table->foreignId('fiche_principale_id')->index();
-            $table->foreignId('fiche_connexe_id')->index();
-            $table->timestamps();
+        Schema::table('fiches', function (Blueprint $table): void {
+            $table->json('portfolio')->after('contenu')->nullable();
         });
     }
 };

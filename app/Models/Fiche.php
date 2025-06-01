@@ -48,6 +48,7 @@ final class Fiche extends Model
         'slug',
         'description',
         'contenu',
+        'portfolio',
         'type',
         'statut',
         'published_at',
@@ -57,6 +58,7 @@ final class Fiche extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'portfolio' => 'array',
         'type' => TypeFiche::class,
         'statut' => StatutFiche::class,
         'published_at' => 'datetime',
@@ -124,5 +126,21 @@ final class Fiche extends Model
                 $query->where('domaines.id', $domaineId);
             });
         });
+    }
+
+    /**
+     * @return BelongsToMany<Fiche>
+     */
+    public function fiches_liees(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'fiches_liees', 'fiche_principale_id', 'fiche_liee_id');
+    }
+
+    /**
+     * @return BelongsToMany<Fiche>
+     */
+    public function fiches_connexes(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'fiches_connexes', 'fiche_principale_id', 'fiche_connexe_id');
     }
 }

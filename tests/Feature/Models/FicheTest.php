@@ -24,6 +24,7 @@ test('to array', function () {
         'type',
         'statut',
         'alt_illustration',
+        'portfolio',
     ]);
 });
 

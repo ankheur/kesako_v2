@@ -20,6 +20,7 @@ final class CategorieController
 
         return view('categorie', [
             'categorie' => $categorie,
+            'fiches' => $categorie->fiches,
             'domaines' => Domaine::published()->get(),
         ]);
     }

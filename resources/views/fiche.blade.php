@@ -27,6 +27,11 @@
                                 </div>
                             </div>
 
+                            @if($fiche->portfolio)
+                                @foreach($fiche->portfolio as $block)
+                                    @includeIf('blocks.' . $block['type'], ['data' => $block['data']])
+                                @endforeach
+                            @endif
 
 
                             <div>
