@@ -9,10 +9,16 @@ parameters:
         - routes/
 
     # Level 9 is the highest level
-    level: 7
+    level: max
 
     ignoreErrors:
         - '#uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types: TFactory#'
+        -
+            identifier: generics.moreTypes
+            path: app/Models
+        -
+            identifier: missingType.iterableValue
+            path: app/Models/Fiche.php
 #
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\Domaine;
 use App\Models\Fiche;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Affiche une erreur si le domaine n’est pas publié', function () {
     $domaine = Domaine::factory()

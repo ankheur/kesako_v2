@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Filament\Resources\FicheResource;
 use App\Models\Fiche;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Page Index fiches fonctionnelle', function () {
     get(FicheResource::getUrl('index'))->assertOk();

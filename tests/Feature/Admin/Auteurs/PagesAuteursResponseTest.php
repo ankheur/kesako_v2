@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Filament\Resources\AuteurResource;
 use App\Models\Auteur;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Page Index auteurs fonctionnelle', function () {
     get(AuteurResource::getUrl('index'))->assertOk();

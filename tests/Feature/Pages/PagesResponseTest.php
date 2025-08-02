@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Fiche;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Homepage fonctionnelle', function () {
     get(route('pages.home'))

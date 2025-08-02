@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\Domaine;
 use App\Models\Fiche;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Affichage de la page d’accueil avec fiches et catégories principales', function () {
     $domaine = Domaine::factory()->published()->create();

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Filament\Resources\TagResource;
 use App\Models\Tag;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Page Index tags fonctionnelle', function () {
     get(TagResource::getUrl('index'))->assertOk();

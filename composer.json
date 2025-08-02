@@ -9,14 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "filament/filament": "^3.3",
+        "algolia/scout-extended": "^3.0",
         "chiiya/filament-access-control": "^2.6",
+        "filament/filament": "^3.3",
+        "filament/spatie-laravel-media-library-plugin": "^3.3",
         "itsgoingd/clockwork": "^5.3",
+        "jeffgreco13/filament-breezy": "^2.6.3",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "algolia/scout-extended": "^3.0",
         "ralphjsmit/laravel-filament-seo": "^1.5.0",
-        "jeffgreco13/filament-breezy": "^2.6.3",
         "spatie/laravel-sitemap": "^7.0"
     },
     "require-dev": {

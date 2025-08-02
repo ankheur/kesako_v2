@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Filament\Resources\CategorieResource;
 use App\Models\Categorie;
 
-use function Pest\Laravel\{get};
+use function Pest\Laravel\get;
 
 test('Page Index categories fonctionnelle', function () {
     get(CategorieResource::getUrl('index'))->assertOk();

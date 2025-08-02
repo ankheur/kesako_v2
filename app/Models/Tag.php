@@ -4,66 +4,134 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Set;
+use App\Models\Concerns\HasOptimizedRelations;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int $id
+ * @property string $nom
+ * @property string $slug
+ * @property string|null $description
+ * @property int|null $fiche_id
+ * @property int $ordre
+ * @property bool $is_featured
+ * @property bool $is_active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read Fiche|null $fiche
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Fiche> $fiches
+ */
 final class Tag extends Model
 {
-    use HasFactory;
+    use HasFactory, HasOptimizedRelations, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    /** @var list<string> */
     protected $fillable = [
-        'denomination',
-        'description',
+        'nom',
         'slug',
-        'published_at',
+        'description',
+        'fiche_id',
+        'ordre',
+        'is_featured',
+        'is_active',
     ];
 
-    public static function getForm(): array
-    {
-        return [
-            TextInput::make('denomination')
-                ->label('Dénomination')
-                ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('slug', Str::slug($state)))
-                ->live(onBlur: true)
-                ->required()
-                ->maxLength(255),
-            TextInput::make('slug')
-                ->required()
-                ->maxLength(255),
-            DateTimePicker::make('published_at'),
-        ];
-    }
+    /** @var array<string, string> */
+    protected $casts = [
+        'is_featured' => 'boolean',
+        'is_active' => 'boolean',
+        'ordre' => 'integer',
+        'fiche_id' => 'integer',
+    ];
 
-    public function domaines(): BelongsToMany
-    {
-        return $this->belongsToMany(Domaine::class);
-    }
+    // Relations
 
+    /**
+     * @return BelongsToMany<Fiche, $this, \Illuminate\Database\Eloquent\Relations\Pivot>
+     */
     public function fiches(): BelongsToMany
     {
-        return $this->belongsToMany(Fiche::class);
+        return $this->belongsToMany(Fiche::class, 'fiches_tags')
+            ->withTimestamps()
+            ->published()
+            ->orderBy('titre');
     }
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * @return BelongsTo<Fiche, $this>
      */
-    protected function casts(): array
+    public function fiche(): BelongsTo
+    {
+        return $this->belongsTo(Fiche::class)->published();
+    }
+
+    // Scopes
+
+    /**
+     * @param  Builder<Tag>  $query
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->where('is_active', true);
+    }
+
+    /**
+     * @param  Builder<Tag>  $query
+     */
+    public function scopeFeatured(Builder $query): void
+    {
+        $query->where('is_featured', true);
+    }
+
+    /**
+     * @param  Builder<Tag>  $query
+     */
+    public function scopeOrdered(Builder $query): void
+    {
+        $query->orderBy('ordre')->orderBy('nom');
+    }
+
+    /**
+     * @param  Builder<Tag>  $query
+     */
+    public function scopeWithFichesCount(Builder $query): void
+    {
+        $query->withCount(['fiches' => fn (Builder $q): Builder => $q->where('published_at', '!=', null)]);
+    }
+
+    /**
+     * Vérifie si le tag a des fiches publiées
+     */
+    public function hasPublishedFiches(): bool
+    {
+        return $this->fiches()->exists();
+    }
+
+    /**
+     * Retourne le nombre de fiches publiées
+     */
+    public function getPublishedFichesCount(): int
+    {
+        return $this->fiches()->count();
+    }
+
+    // Méthodes métier
+
+    /**
+     * Retourne les relations à charger de manière optimisée
+     *
+     * @return array<int, string>
+     */
+    protected function getOptimizedRelations(): array
     {
         return [
-            'id' => 'integer',
-            'published_at' => 'datetime',
+            'fiche:id,titre,slug',
         ];
     }
 }
